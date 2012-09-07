@@ -55,19 +55,24 @@ unsigned short SeedRecord::getYear()
     return ntohs(header->start_time.year);
 }
 
-unsigned short SeedRecord::getDay()
+unsigned short SeedRecord::getYDay()
 {
-    return ntohs(header->start_time.day);
+    return ntohs(header->start_time.yday);
+}
+
+unsigned short SeedRecord::getHour()
+{
+    return header->start_time.hour;
 }
 
 unsigned short SeedRecord::getMinute()
 {
-    return ntohs(header->start_time.minute);
+    return header->start_time.minute;
 }
 
 unsigned short SeedRecord::getSecond()
 {
-    return ntohs(header->start_time.second);
+    return header->start_time.second;
 }
 
 unsigned short SeedRecord::getHUsecond()

@@ -6,7 +6,7 @@
 
 struct seed_time {
     uint16_t year;
-    uint16_t day;
+    uint16_t yday;
     uint8_t  hour;
     uint8_t  minute;
     uint8_t  second;
