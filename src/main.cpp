@@ -8,19 +8,19 @@ using namespace std;
 
 int main(int argc, char **argv)
 {
-    bool verbose = false;
+    bool verbose = true;
     FILE * pFile;
     long lFileSize;
     uint8_t buffer[16384];
-    size_t result; 
-    string fileName;
+
+    size_t result, fileFound;  //integral data type returned by language operator 
     int nArg, iBlockCount, count, iBlockSize; 
 
     count = 0;
 
     if(argc <= 1)
     {
-        cout << "Terminating Program No Seed File Entered" << endl;
+        cout << "Terminating Program: No Seed File Entered" << endl;
         return -1;
     } 
 
@@ -30,7 +30,7 @@ int main(int argc, char **argv)
 
     for(nArg = 1; nArg < argc; nArg++)
     {
-        cout << "Argument "<< nArg << " " << argv[nArg] << endl;
+        cout << "Seed Record "<< nArg << " " << argv[nArg] << endl;
         pFile = fopen(argv[nArg], "rb");
 
         if(pFile != NULL)
@@ -60,20 +60,24 @@ int main(int argc, char **argv)
                         record->getSecond(),
                         record->getHUsecond());
                 if (verbose) {
-                    fprintf(stdout, "       |        Num Samples:  %d\n", record->getNumberOfSamples());
-                    fprintf(stdout, "       |        Rate Factor:  %d\n", record->getSampleRateFactor());
-                    fprintf(stdout, "       |    Rate Multiplier:  %d\n", record->getSampleRateMultiplier());
+                    fprintf(stdout, "       |     Number of Samples:  %d\n", record->getNumberOfSamples());
+                    fprintf(stdout, "       |     Sample Rate Factor:  %d\n", record->getSampleRateFactor());
+                    fprintf(stdout, "       |     Sample Rate Multiplier:  %d\n", record->getSampleRateMultiplier());
                     fprintf(stdout, "       |     Activity Flags:  0x%08lx\n", (unsigned long)record->getActivityFlags());
-                    fprintf(stdout, "       |   IO & Clock Flags:  0x%08lx\n", (unsigned long)record->getIOAndClockFlags());
-                    fprintf(stdout, "       | Data Quality Flags:  0x%08lx\n", (unsigned long)record->getDataQualityFlags());
-                    fprintf(stdout, "       |     Num Blockettes:  %d\n", record->getNumberOfBlockettes());
-                    fprintf(stdout, "       |    Time Correction:  %li\n", record->getTimeCorrection());
-                    fprintf(stdout, "       |      Start of Data:  %lu\n", record->getBeginningOfData());
-                    fprintf(stdout, "       |    First Blockette:  %lu\n", record->getFirstBlockette());
+                    fprintf(stdout, "       |     I/O & Clock Flags:  0x%08lx\n", (unsigned long)record->getIOAndClockFlags());
+                    fprintf(stdout, "       |     Data Quality Flags:  0x%08lx\n", (unsigned long)record->getDataQualityFlags());
+                    fprintf(stdout, "       |     Number of Blockettes that Follow:  %d\n", record->getNumberOfBlockettes());
+                    fprintf(stdout, "       |     Time Correction:  %li\n", record->getTimeCorrection());
+                    fprintf(stdout, "       |     Beginning of Data:  %lu\n", record->getBeginningOfData());
+                    fprintf(stdout, "       |     First Blockette:  %lu\n", record->getFirstBlockette());
                 }
+            delete record;
+            }
+            
+            fseek(pFile, 0, SEEK_SET);
+            lBytesRead = 0;
+            
 
-                delete record;
-            }    
         } // end if
     } // end for
     return 0;

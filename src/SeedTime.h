@@ -26,4 +26,3 @@ class SeedTime
     unsigned short getHUsecond();
 };
 #endif
-

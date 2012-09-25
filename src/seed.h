@@ -34,5 +34,21 @@ struct seed_header {
     uint16_t beginning_of_data;         // 44 [2]   - 17
     uint16_t first_blockette;           // 46 [2]   - 18
 } __attribute__ ((__packed__));
+
+struct blockette_1000 {
+     
+    uint16_t blockette_type[2];          
+    uint16_t next_blockette_byte_number[2];  
+    uint8_t  encoding_format;              
+    uint8_t  word_order;                 
+    uint8_t  data_record_length;                                      
+    uint8_t  reserved;                            
+
+
+}__attribute__ ((__packed__));
+
+
+
+
 #endif
 
