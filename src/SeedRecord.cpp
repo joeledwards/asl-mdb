@@ -4,7 +4,7 @@ SeedRecord::SeedRecord(uint8_t *data, size_t data_length)
 {
     raw = data;
     length = data_length;
-    header = (struct seed_header *)data;
+    header = (struct seed_header *)raw;
 }
 
 uint16_t SeedRecord::getRecordLength()
@@ -45,7 +45,7 @@ std::string SeedRecord::getChannel()
 SeedTime * SeedRecord::getStartTime()
 {
 
-    return new SeedTime((struct seed_time *)(raw + SEED_TIME_OFFSET));
+    return new SeedTime(&header->start_time);
 }
 
 unsigned short SeedRecord::getNumberOfSamples()

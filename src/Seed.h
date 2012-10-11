@@ -4,8 +4,6 @@
 #include <cstddef>
 #include <stdint.h>
 
-#define SEED_TIME_OFFSET 20
-
 struct seed_time {
     uint16_t year;
     uint16_t yday;
