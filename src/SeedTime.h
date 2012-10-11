@@ -1,20 +1,18 @@
-#ifndef __SEEDRECORD_H__
-#define __SEEDRECORD_H__
+#ifndef __SEEDTIME_H__
+#define __SEEDTIME_H__
 
-#include "seed.h"
+#include "Seed.h"
 #include <sys/types.h>
 #include <arpa/inet.h>
 #include <string>
 
 class SeedTime
 {
-    uint8_t *raw;
-    size_t   length;
     struct seed_time *time;
 
     public:
 
-    SeedTime(uint8_t *data, size_t length);
+    SeedTime(struct seed_time *time);
 
     unsigned short getYear();
     unsigned short getYDay();

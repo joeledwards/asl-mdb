@@ -1,8 +1,9 @@
 #ifndef __SEEDRECORD_H__
 #define __SEEDRECORD_H__
 
-#include "seed.h"
+#include "Seed.h"
 #include "SeedTime.h"
+#include "SeedBlockette1000.h"
 #include <sys/types.h>
 #include <arpa/inet.h>
 #include <string>
@@ -27,13 +28,7 @@ class SeedRecord
     std::string getLocation();
     std::string getChannel();
 
-    struct seed_time *getStartTime();
-    unsigned short getYear();
-    unsigned short getYDay();
-    unsigned short getHour();
-    unsigned short getMinute();
-    unsigned short getSecond();
-    unsigned short getHUsecond();
+	SeedTime *getStartTime();
 
     unsigned short getNumberOfSamples();
     short getSampleRateFactor();
@@ -45,6 +40,7 @@ class SeedRecord
     long getTimeCorrection();
     size_t getBeginningOfData();
     size_t getFirstBlockette();
+
+
 };
 #endif
-

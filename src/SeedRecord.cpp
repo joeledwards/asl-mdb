@@ -42,42 +42,10 @@ std::string SeedRecord::getChannel()
     return std::string(header->channel, 3);
 }
 
-
-struct seed_time *SeedRecord::getStartTime()
+SeedTime * SeedRecord::getStartTime()
 {
-    return &header->start_time;
-}
 
-
-// Time methods
-unsigned short SeedRecord::getYear()
-{
-    return ntohs(header->start_time.year);
-}
-
-unsigned short SeedRecord::getYDay()
-{
-    return ntohs(header->start_time.yday);
-}
-
-unsigned short SeedRecord::getHour()
-{
-    return header->start_time.hour;
-}
-
-unsigned short SeedRecord::getMinute()
-{
-    return header->start_time.minute;
-}
-
-unsigned short SeedRecord::getSecond()
-{
-    return header->start_time.second;
-}
-
-unsigned short SeedRecord::getHUsecond()
-{
-    return ntohs(header->start_time.husecond);
+    return new SeedTime((struct seed_time *)(raw + SEED_TIME_OFFSET));
 }
 
 unsigned short SeedRecord::getNumberOfSamples()
