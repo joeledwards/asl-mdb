@@ -23,7 +23,7 @@ struct seed_header {
     char channel[3];                    // 15 [3]   -  6
     char network[2];                    // 18 [2]   -  7
     struct seed_time start_time;        // 20 [10]  -  8
-    uint16_t number_of_samples;         // 30 [2]   -  9
+    uint16_t number_of_samples;         // 30 [2]   -  9`
     int16_t  sample_rate_factor;        // 32 [2]   - 10
     int16_t  sample_rate_multiplier;    // 34 [2]   - 11
     uint8_t  activity_flags;            // 36 [1]   - 12
@@ -35,20 +35,12 @@ struct seed_header {
     uint16_t first_blockette;           // 46 [2]   - 18
 } __attribute__ ((__packed__));
 
-struct blockette_1000 {
-     
-    uint16_t blockette_type[2];          
-    uint16_t next_blockette_byte_number[2];  
-    uint8_t  encoding_format;              
-    uint8_t  word_order;                 
-    uint8_t  data_record_length;                                      
-    uint8_t  reserved;                            
-
-
-}__attribute__ ((__packed__));
-
-
-
-
+struct seed_blockette_1000 {
+	uint16_t blockette_type;
+	uint16_t next_blockette_byte_number;
+	int8_t encoding_format;
+	uint8_t word_order;
+	uint8_t data_record_length;
+	uint8_t reserved;
+} __attribute__ ((__packed__));
 #endif
-

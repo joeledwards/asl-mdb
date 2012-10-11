@@ -1,10 +1,13 @@
 #include "SeedTime.h"
+#include <stdio.h>
+#include <iostream>
+#include <cstdlib>
+#include <stdio.h>
+#include <stdlib.h>
 
-SeedTime::SeedTime(uint8_t *data, size_t data_length)
+SeedTime::SeedTime(struct seed_time *time)
 {
-    raw = data;
-    length = data_length;
-    time = (struct seed_time *)data;
+    this->time = time;
 }
 
 // Time methods

@@ -53,12 +53,12 @@ int main(int argc, char **argv)
                         record->getStation().c_str(),
                         record->getLocation().c_str(),
                         record->getChannel().c_str(),
-                        record->getYear(),
-                        record->getYDay(),
-                        record->getHour(),
-                        record->getMinute(),
-                        record->getSecond(),
-                        record->getHUsecond());
+                        record->getStartTime()->getYear(),
+                        record->getStartTime()->getYDay(),
+                        record->getStartTime()->getHour(),
+                        record->getStartTime()->getMinute(),
+                        record->getStartTime()->getSecond(),
+                        record->getStartTime()->getHUsecond());
                 if (verbose) {
                     fprintf(stdout, "       |     Number of Samples:  %d\n", record->getNumberOfSamples());
                     fprintf(stdout, "       |     Sample Rate Factor:  %d\n", record->getSampleRateFactor());
@@ -73,11 +73,6 @@ int main(int argc, char **argv)
                 }
             delete record;
             }
-            
-            fseek(pFile, 0, SEEK_SET);
-            lBytesRead = 0;
-            
-
         } // end if
     } // end for
     return 0;
